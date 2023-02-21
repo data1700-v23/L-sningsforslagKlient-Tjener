@@ -9,9 +9,8 @@ $("#temp").click(function temp(){
     let url = "temp?month=" + month
 
 
-/*  Example of how to use fetch instead of jQuery
-    This is not part of the course, but it could be useful to know
-
+/*  Eksempel på hvordan man kan bruke fetch til å hente data fra serveren
+    Dette er ikke pensum, men kan være nyttig å vite om til senere
     fetch(url, {
         method: "GET"
     })
@@ -23,15 +22,15 @@ $("#temp").click(function temp(){
         })
 
 */
-    //Gets the temperature from the server using jQuery get
+    //Henter temperatur fra serveren ved å bruke jquery
     $.get(url, function(data){
         let temp = "Temperaturen i " + monthName.toLowerCase() + " er " + data + " grader C."
 
-        document.getElementById("result").innerHTML = temp;
+        $("#result").html(temp);
     })
 
 })
-// Function to parse the month number from input
+// Funksjon som endrer månedenavn til månedsnummer
 function parseMonth(monthName){
     let month = monthName.toLowerCase();
     switch(month){

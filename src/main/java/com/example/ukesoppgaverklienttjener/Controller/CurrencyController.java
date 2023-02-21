@@ -1,7 +1,9 @@
 package com.example.ukesoppgaverklienttjener.Controller;
 
 import com.example.ukesoppgaverklienttjener.Models.Currency;
+import com.example.ukesoppgaverklienttjener.Models.CurrencyValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -19,15 +21,18 @@ public class CurrencyController {
         }
     };
 
-    @GetMapping("/currency")
-    public double getCurrency(String type, double amount){
+    @PostMapping("/getCurrencies")
+    public ArrayList<Currency> getCurrencies(){
+        return currencyRegister;
+    }
+
+    @PostMapping("/calculateValue")
+    public double calculateValue(CurrencyValue currencyValue){
         for(Currency currency : currencyRegister){
-            if(currency.getType().equals(type)){
-                double value = currency.getRate() * amount;
-                return value;
+            if(currency.getCurrency().equals(currencyValue.getCurrency())){
+                return currency.getRate() * currencyValue.getAmount();
             }
         }
-
         return 0;
     }
 
