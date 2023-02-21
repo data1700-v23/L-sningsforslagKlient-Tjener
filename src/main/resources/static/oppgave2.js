@@ -19,11 +19,13 @@ $("#convert").click(function (){
     // Sjekker om brukeren har skrevet inn et tall større enn 0 i inputfeltet så sendes det til serveren
     if(currencyValue.amount > 0){
         $.post("/calculateValue", currencyValue, function(data){
-            if(data != 0){
-            let ut = "<p>"+ currencyValue.amount + " " + currencyValue.currency + " er " + data + " NOK</p>"
-            $("#result2").html(ut)
+            if(data !== 0){
+                let ut = "<p>"+ currencyValue.amount + " " + currencyValue.currency + " er " + data + " NOK</p>"
+                $("#result2").html(ut)
             }
-            $("#result2").html("Det skjedde noe feil på serveren")
+            else{
+                $("#result2").html("Det skjedde noe feil på serveren")
+            }
         })
     }
 })
