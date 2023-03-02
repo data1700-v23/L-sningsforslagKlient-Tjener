@@ -12,14 +12,14 @@ import java.util.ArrayList;
 @RestController()
 public class CurrencyController {
 
-    private ArrayList<Currency> currencyRegister = new ArrayList<>(){
-        {
-            add(new Currency("USD", 8.5));
-            add(new Currency("EUR", 10.0));
-            add(new Currency("GBP", 11.0));
-            add(new Currency("SEK", 1.0));
-        }
-    };
+    private ArrayList<Currency> currencyRegister = new ArrayList<>();
+    @PostMapping("/load")
+    public void loadCurrencies(){
+        currencyRegister.add(new Currency("USD", 8.5));
+        currencyRegister.add(new Currency("EUR", 10.0));
+        currencyRegister.add(new Currency("GBP", 11.0));
+        currencyRegister.add(new Currency("SEK", 1.1));
+    }
 
     @PostMapping("/getCurrencies")
     public ArrayList<Currency> getCurrencies(){
@@ -29,7 +29,7 @@ public class CurrencyController {
     @PostMapping("/calculateValue")
     public double calculateValue(CurrencyValue currencyValue){
         for(Currency currency : currencyRegister){
-            if(currency.getCurrency().equals(currencyValue.getCurrency())){
+            if(currency.getCurrency().equalsIgnoreCase(currencyValue.getCurrency())){
                 return currency.getRate() * currencyValue.getAmount();
             }
         }
