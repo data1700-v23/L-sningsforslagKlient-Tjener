@@ -12,23 +12,23 @@ public class TempController {
     public int getTemp(String month){
 
         // Kan også bruke vanlig switch eller if/elseif/else
-        int monthNumber = switch (month) {
-            case "januar" -> 1;
-            case "februar" -> 2;
-            case "mars" -> 3;
-            case "april" -> 4;
-            case "mai" -> 5;
-            case "juni" -> 6;
-            case "juli" -> 7;
-            case "august" -> 8;
-            case "september" -> 9;
-            case "oktober" -> 10;
-            case "november" -> 11;
-            case "desember" -> 12;
-            default -> -1;
+        int temp = switch (month.toLowerCase()) {
+            case "januar" -> tempArray[0];
+            case "februar" -> tempArray[1];
+            case "mars" -> tempArray[2];
+            case "april" -> tempArray[3];
+            case "mai" -> tempArray[4];
+            case "juni" -> tempArray[5];
+            case "juli" -> tempArray[6];
+            case "august" -> tempArray[7];
+            case "september" -> tempArray[8];
+            case "oktober" -> tempArray[9];
+            case "november" -> tempArray[10];
+            case "desember" -> tempArray[11];
+            default -> 0;
         };
-
-        return tempArray[monthNumber-1];
+        
+        return temp;
     }
 
 
